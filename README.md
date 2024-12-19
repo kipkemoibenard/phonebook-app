@@ -11,5 +11,13 @@ git clone git@github.com:kipkemoibenard/phonebook-app.git
 type code . 
 or open using idea.
 
+# setting up the project
+run: npm install
+
+# tailwind css
+https://tailwindcss.com/docs/guides/angular
+
+visited link above and ran command from step 2
+
 # running the project
 npm run start
