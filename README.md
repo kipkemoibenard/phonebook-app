@@ -19,5 +19,16 @@ https://tailwindcss.com/docs/guides/angular
 
 visited link above and ran command from step 2
 
-# running the project
+# Json server
+link: https://www.npmjs.com/package/json-server
+install cmd: npm install json-server
+
+# running Json server
+run: npm run db
+or
+run: npx json-server db.json
+or
+run: json-server --watch db.json
+
+# running the project/app
 npm run start
