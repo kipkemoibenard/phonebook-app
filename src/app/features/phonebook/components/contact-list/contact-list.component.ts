@@ -40,7 +40,6 @@ export class ContactListComponent implements OnInit, OnDestroy {
   }
 
   onContactClick(contactId: number): void {
-    console.log(contactId)
     // Navigate to the contact details page with the contact's ID
     this.router.navigate(['/phonebook/contact-details', contactId]);
   }

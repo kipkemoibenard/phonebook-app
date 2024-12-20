@@ -1,45 +1,41 @@
 {
-    "contacts": [
-      {
-        "id": "1",
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "john.doe@example.com",
-        "phone_number": "+254456789076",
-        "contact_image": "https://via.placeholder.com/150",
-        "physical_address": "123 Kimathi st, Nairobi, Kenya",
-        "is_deleted": false
-      },
-      {
-        "id": "2",
-        "first_name": "Jane",
-        "last_name": "Smith",
-        "email": "jane.smith@example.com",
-        "phone_number": "+254456789009",
-        "contact_image": "https://via.placeholder.com/150",
-        "physical_address": "456 Wainaina St, Nairobi, Kenya",
-        "is_deleted": false
-      },
-      {
-        "id": "3",
-        "first_name": "Ilkay",
-        "last_name": "Gundogan",
-        "email": "ilkay.gundogan@example.com",
-        "phone_number": "+254456789075",
-        "contact_image": "https://via.placeholder.com/150",
-        "physical_address": "786 Juja st, Thika, Kenya",
-        "is_deleted": false
-      },
-      {
-        "id": "4",
-        "first_name": "Jane",
-        "last_name": "Smith",
-        "email": "jane.smith@example.com",
-        "phone_number": "+254456789079",
-        "contact_image": "https://via.placeholder.com/150",
-        "physical_address": "45 Wabera st, Isiolo, Kenya",
-        "is_deleted": false
-      }
-    ]
-  }
-  
+  "contacts": [
+    {
+      "id": "1",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "john.doe@example.com",
+      "phone_number": "+254456789076",
+      "contact_image": "https://via.placeholder.com/150",
+      "physical_address": "123 Kimathi st, Nairobi, Kenya",
+      "is_deleted": false
+    },
+    {
+      "first_name": "Kariuki",
+      "last_name": "Kamau",
+      "email": "jane.smith@gmail.com",
+      "phone_number": "+254456789009",
+      "physical_address": "456 Wainaina St, Nairobi, Kenya",
+      "id": "2",
+      "is_deleted": true
+    },
+    {
+      "first_name": "Ilkay",
+      "last_name": "Gundogan",
+      "email": "ilkay.gundogan@ilkay.com",
+      "phone_number": "+25445678907",
+      "physical_address": "786 Juja st, Juja, Kenya",
+      "id": "3"
+    },
+    {
+      "id": "4",
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "email": "jane.smith@example.com",
+      "phone_number": "+254456789079",
+      "contact_image": "https://via.placeholder.com/150",
+      "physical_address": "45 Wabera st, Isiolo, Kenya",
+      "is_deleted": true
+    }
+  ]
+}

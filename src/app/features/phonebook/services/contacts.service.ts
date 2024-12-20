@@ -17,4 +17,18 @@ baseUrl = 'http://localhost:3000'
   getAllContacts(): Observable<Contact[]> {
     return this.http.get<Contact[]>(`${this.baseUrl}/contacts`);
   }
+
+  getContactDetailsById(contactId: number): Observable<Contact> {
+    return this.http.get<Contact>(`${this.baseUrl}/contacts/${contactId}`);
+  }
+
+  updateContact(contact: Contact): Observable<Contact> {
+    const url = `${this.baseUrl}/contacts/${contact.id}`;
+    return this.http.put<Contact>(url, contact);
+  }
+
+  markAsDeleted(contactDetails: any): Observable<any> {
+    const contactId = contactDetails.id;
+    return this.http.put(`${this.baseUrl}/contacts/${contactId}`, contactDetails);
+  }
 }

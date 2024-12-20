@@ -1,1 +1,154 @@
-<p>contact-details works!</p>
+<div *ngIf="contactDetails" class="container mx-auto p-4">
+    <!-- Back Button -->
+    <div class="mb-4">
+        <button (click)="goBack()"
+            class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 focus:outline-none">
+            &larr; Back to Contact List
+        </button>
+    </div>
+
+    <!-- Contact Details -->
+    <div class="bg-white shadow-md rounded-lg p-6 space-y-4">
+        <div class="flex flex-col items-center">
+            <img
+              [src]="contactDetails.contact_image"
+              alt="{{ contactDetails.first_name }} {{ contactDetails.last_name }}"
+              class="w-32 h-32 rounded-full object-cover mb-4"
+            />
+            <h2 class="text-2xl font-bold text-gray-800">
+              {{ contactDetails.first_name }} {{ contactDetails.last_name }}
+            </h2>
+              <p class="text-lg text-gray-600">{{ contactDetails.email }}</p>
+              <p class="text-lg text-gray-600">{{ contactDetails.phone_number }}</p>
+              <p class="text-lg text-gray-600">{{ contactDetails.physical_address }}</p>
+              <!-- Show "Deleted" label if is_deleted is true -->
+            <p *ngIf="contactDetails.is_deleted" class="text-lg font-semibold text-red-600">Deleted</p>
+          </div>
+          
+
+        <!-- Edit and Delete Buttons -->
+        <div class="mt-6 flex justify-center flex-wrap gap-4">
+            <button (click)="openEditModal(contactDetails)"
+                class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none">
+                Edit
+            </button>
+            <button (click)="deleteContact()"
+                class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 focus:outline-none">
+                Delete
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div *ngIf="isEditModalOpen" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white rounded-lg shadow-lg w-11/12 max-w-md p-6">
+        <h2 class="text-xl font-bold mb-4">Edit Contact</h2>
+        <form [formGroup]="contactDetailsForm" class="space-y-4">
+
+            <!-- First Name Field -->
+            <div class="form-group">
+              <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
+              <input
+                id="first_name"
+                formControlName="first_name"
+                type="text"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                [class.border-red-500]="contactDetailsForm.controls['first_name'].invalid && (contactDetailsForm.controls['first_name'].touched || contactDetailsForm.controls['first_name'].dirty)"
+                [class.border-blue-500]="contactDetailsForm.controls['first_name'].valid && (contactDetailsForm.controls['first_name'].touched || contactDetailsForm.controls['first_name'].dirty)"
+              />
+              <div *ngIf="contactDetailsForm.controls['first_name'].invalid && (contactDetailsForm.controls['first_name'].touched || contactDetailsForm.controls['first_name'].dirty)" class="text-red-500 text-sm mt-1">
+                <p *ngIf="contactDetailsForm.controls['first_name'].hasError('required')">First name is required.</p>
+              </div>
+            </div>
+        
+            <!-- Last Name Field -->
+            <div class="form-group">
+              <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+              <input
+                id="last_name"
+                formControlName="last_name"
+                type="text"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                [class.border-red-500]="contactDetailsForm.controls['last_name'].invalid && (contactDetailsForm.controls['last_name'].touched || contactDetailsForm.controls['last_name'].dirty)"
+                [class.border-blue-500]="contactDetailsForm.controls['last_name'].valid && (contactDetailsForm.controls['last_name'].touched || contactDetailsForm.controls['last_name'].dirty)"
+              />
+              <div *ngIf="contactDetailsForm.controls['last_name'].invalid && (contactDetailsForm.controls['last_name'].touched || contactDetailsForm.controls['last_name'].dirty)" class="text-red-500 text-sm mt-1">
+                <p *ngIf="contactDetailsForm.controls['last_name'].hasError('required')">Last name is required.</p>
+              </div>
+            </div>
+        
+            <!-- Email Field -->
+            <div class="form-group">
+              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+              <input
+                id="email"
+                formControlName="email"
+                type="email"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                [class.border-red-500]="contactDetailsForm.controls['email'].invalid && (contactDetailsForm.controls['email'].touched || contactDetailsForm.controls['email'].dirty)"
+                [class.border-blue-500]="contactDetailsForm.controls['email'].valid && (contactDetailsForm.controls['email'].touched || contactDetailsForm.controls['email'].dirty)"
+              />
+              <div *ngIf="contactDetailsForm.controls['email'].invalid && (contactDetailsForm.controls['email'].touched || contactDetailsForm.controls['email'].dirty)" class="text-red-500 text-sm mt-1">
+                <p *ngIf="contactDetailsForm.controls['email'].hasError('required')">Email is required.</p>
+                <p *ngIf="contactDetailsForm.controls['email'].hasError('email')">Please enter a valid email.</p>
+              </div>
+            </div>
+        
+            <!-- Phone Number Field -->
+            <div class="form-group">
+              <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+              <input
+                id="phone_number"
+                formControlName="phone_number"
+                type="tel"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                [class.border-red-500]="contactDetailsForm.controls['phone_number'].invalid && (contactDetailsForm.controls['phone_number'].touched || contactDetailsForm.controls['phone_number'].dirty)"
+                [class.border-blue-500]="contactDetailsForm.controls['phone_number'].valid && (contactDetailsForm.controls['phone_number'].touched || contactDetailsForm.controls['phone_number'].dirty)"
+              />
+              <div *ngIf="contactDetailsForm.controls['phone_number'].invalid && (contactDetailsForm.controls['phone_number'].touched || contactDetailsForm.controls['phone_number'].dirty)" class="text-red-500 text-sm mt-1">
+                <p *ngIf="contactDetailsForm.controls['phone_number'].hasError('required')">Phone number is required.</p>
+                <p *ngIf="contactDetailsForm.controls['phone_number'].hasError('pattern')">Phone number must be numeric and may start with a '+'.</p>
+                <p *ngIf="contactDetailsForm.controls['phone_number'].hasError('minlength')">Phone number must be at least 10 characters.</p>
+                <p *ngIf="contactDetailsForm.controls['phone_number'].hasError('maxlength')">Phone number cannot exceed 13 characters.</p>
+              </div>
+            </div>
+        
+            <!-- Physical Address Field -->
+            <div class="form-group">
+              <label for="physical_address" class="block text-sm font-medium text-gray-700">Physical Address</label>
+              <input
+                id="physical_address"
+                formControlName="physical_address"
+                type="text"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                [class.border-red-500]="contactDetailsForm.controls['physical_address'].invalid && (contactDetailsForm.controls['physical_address'].touched || contactDetailsForm.controls['physical_address'].dirty)"
+                [class.border-blue-500]="contactDetailsForm.controls['physical_address'].valid && (contactDetailsForm.controls['physical_address'].touched || contactDetailsForm.controls['physical_address'].dirty)"
+              />
+              <div *ngIf="contactDetailsForm.controls['physical_address'].invalid && (contactDetailsForm.controls['physical_address'].touched || contactDetailsForm.controls['physical_address'].dirty)" class="text-red-500 text-sm mt-1">
+                <p *ngIf="contactDetailsForm.controls['physical_address'].hasError('required')">Physical address is required.</p>
+              </div>
+            </div>
+            
+            <div class="form-group flex mt-4">
+                <!-- Cancel Button -->
+                <button
+                  type="button"
+                  class="w-1/2 py-2 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 mr-4"
+                  (click)="closeEditModal()">
+                  Cancel
+                </button>
+              
+                <!-- Submit Button -->
+                <button
+                  type="submit"
+                  [disabled]="contactDetailsForm.invalid"
+                  class="w-1/2 py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 disabled:opacity-50"
+                  (click)="updateContact()">
+                  Submit
+                </button>
+              </div>
+              
+          </form>        
+    </div>
+</div>
