@@ -1,18 +1,17 @@
 {
   "contacts": [
     {
-      "id": "1",
       "first_name": "John",
-      "last_name": "Doe",
+      "last_name": "Doee",
       "email": "john.doe@example.com",
       "phone_number": "+254456789076",
-      "contact_image": "https://via.placeholder.com/150",
       "physical_address": "123 Kimathi st, Nairobi, Kenya",
+      "id": "1",
       "is_deleted": false
     },
     {
       "first_name": "Kariuki",
-      "last_name": "Kamau",
+      "last_name": "Kamau sam",
       "email": "jane.smith@gmail.com",
       "phone_number": "+254456789009",
       "physical_address": "456 Wainaina St, Nairobi, Kenya",
@@ -21,20 +20,20 @@
     },
     {
       "first_name": "Ilkay",
-      "last_name": "Gundogan",
+      "last_name": "Gundogan City",
       "email": "ilkay.gundogan@ilkay.com",
       "phone_number": "+25445678907",
       "physical_address": "786 Juja st, Juja, Kenya",
-      "id": "3"
+      "id": "3",
+      "is_deleted": true
     },
     {
-      "id": "4",
       "first_name": "Jane",
       "last_name": "Smith",
       "email": "jane.smith@example.com",
       "phone_number": "+254456789079",
-      "contact_image": "https://via.placeholder.com/150",
       "physical_address": "45 Wabera st, Isiolo, Kenya",
+      "id": "4",
       "is_deleted": true
     }
   ]

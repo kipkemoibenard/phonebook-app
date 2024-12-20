@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactsService } from '../../services/contacts.service';
 import { Contact } from '../../models/phonebook';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationService } from 'src/app/shared/services/notifications.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -21,7 +22,8 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private contactsService: ContactsService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -82,13 +84,15 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
       const updatedContact = {
         ...this.contactDetailsForm.value,
         id: this.contactId,
+        is_deleted: false
       };
       this.contactsService.updateContact(updatedContact).subscribe((updatedData) => {
             this.contactDetails = updatedData;
             this.closeEditModal();
+            this.notificationService.success('Updated!')
           });
     } else {
-      console.log('Form is invalid');
+      this.notificationService.error('Something happened!')
     }
   }
 
@@ -98,26 +102,28 @@ export class ContactDetailsComponent implements OnInit, OnDestroy {
 
   // Delete Contact Logic without actual delete method call
   deleteContact(): void {
-    if (this.contactDetails) {
-      this.contactDetails.is_deleted = true; // Mark as deleted
+    if (!this.contactDetails) {
+      this.notificationService.failure('No contact to delete!');
+      return;
+    }
   
-      // Call the service to update the contact with only is_deleted set to true
+    const isConfirmed = window.confirm('Are you sure you want to delete this contact?');
+  
+    if (isConfirmed) {
+      this.contactDetails.is_deleted = true;
+  
       this.contactsService.markAsDeleted(this.contactDetails).subscribe(
         () => {
-          alert('Contact deleted');
+          this.notificationService.success('Contact deleted');
           this.router.navigate(['/phonebook/contact-list']);
         },
         (error) => {
-          console.error('Error deleting contact:', error);
-          alert('Failed to delete contact');
+          this.notificationService.error('Error deleting contact!');
         }
       );
-    } else {
-      alert('No contact details found');
     }
   }
-  
-  
+   
 
   /**
    * The `goBack` function navigates the user back to the contact list page in a phonebook application.
