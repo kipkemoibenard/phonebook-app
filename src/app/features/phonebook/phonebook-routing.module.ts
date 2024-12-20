@@ -5,7 +5,7 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
 
 const routes: Routes = [
   { path: 'contact-list', component: ContactListComponent },
-  { path: 'contact-details', component: ContactDetailsComponent}
+  { path: 'contact-details/:id', component: ContactDetailsComponent}
 ];
 
 @NgModule({

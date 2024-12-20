@@ -1,1 +1,31 @@
-<p>contact-list works!</p>
+<div class="container mx-auto p-4">
+    <!-- Sorting Dropdown -->
+    <div class="mb-4">
+        <label for="sort-field" class="block text-gray-700 font-medium mb-2">Sort By:</label>
+        <select id="sort-field" [(ngModel)]="selectedSortField"
+            class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded w-full md:w-1/3">
+            <option *ngFor="let field of ['first_name', 'last_name', 'phone_number']" [value]="field">
+                {{ field | titlecase }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Toggle View Button -->
+    <div class="mb-4">
+        <button (click)="toggleView()" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600">
+            Switch to {{ isGridView ? 'List' : 'Grid' }} View
+        </button>
+    </div>
+
+    <!-- Contact List/Grid -->
+    <div
+        [ngClass]="{ 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4': isGridView, 'flex flex-col space-y-4': !isGridView }">
+        <div *ngFor="let contact of contacts | sort: selectedSortDirection: selectedSortField"
+            class="border rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col items-center bg-white"
+            (click)="onContactClick(contact.id)">
+            <!-- Display Name and Phone Number -->
+            <h2 class="text-lg font-medium">{{ contact.first_name }} {{ contact.last_name }}</h2>
+            <p class="text-sm text-gray-500">{{ contact.phone_number }}</p>
+        </div>
+    </div>
+</div>
