@@ -43,14 +43,29 @@
         </div>
     </div>
 
+    <!-- Bulk Actions -->
+    <div class="flex justify-between items-center mb-4">
+        <div class="flex items-center">
+            <input type="checkbox" id="select-all" (change)="toggleSelectAll($event)" class="mr-2">
+            <label for="select-all" class="text-sm text-gray-700">Select All</label>
+        </div>
+        <button (click)="deleteSelected()" [disabled]="!hasSelectedContacts"
+            class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 disabled:bg-red-300 disabled:cursor-not-allowed text-sm">
+            Delete Selected
+        </button>
+    </div>
+
     <!-- Contact List/Grid -->
     <div
         [ngClass]="{ 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4': isGridView, 'flex flex-col space-y-4': !isGridView }">
         <div *ngFor="let contact of filteredContacts | sort: selectedSortDirection: selectedSortField"
-            class="border rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col items-center bg-white w-full"
-            (click)="onContactClick(contact.id)">
-            <!-- Display Name and Phone Number -->
-            <h2 class="text-base sm:text-lg font-medium text-center break-words">{{ contact.first_name }} {{ contact.last_name }}</h2>
+            class="border rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col items-center bg-white w-full relative" (click)="onContactClick(contact.id)">
+            <!-- Checkbox -->
+            <div class="absolute top-2 left-2">
+                <input type="checkbox" [(ngModel)]="contact.selected" (click)="$event.stopPropagation()" class="form-checkbox h-4 w-4 text-blue-600">
+            </div>
+            <!-- Display Name, email and Phone Number -->
+            <h2 class="text-base sm:text-lg font-medium text-center break-words mt-4">{{ contact.first_name }} {{ contact.last_name }}</h2>
             <p class="text-xs sm:text-sm text-gray-500 text-center break-words">{{ contact.phone_number }}</p>
             <p class="text-xs sm:text-sm text-gray-500 text-center break-words">{{ contact.email }}</p>
         </div>

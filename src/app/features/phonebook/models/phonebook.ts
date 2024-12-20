@@ -1,4 +1,5 @@
 export interface Contact {
+    selected: boolean;
     id: number;
     first_name: string;
     last_name: string;

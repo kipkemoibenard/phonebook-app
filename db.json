@@ -36,8 +36,7 @@
       "phone_number": "+254456789079",
       "physical_address": "45 Wabera st, Isiolo, Kenya",
       "id": "4",
-      "is_deleted": true,
-      "contact_image": "https://pics.craiyon.com/2023-06-14/82614c9c770f4641af42a3617d1fb4b3.webp"
+      "is_deleted": false
     }
   ]
 }

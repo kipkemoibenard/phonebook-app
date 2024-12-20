@@ -64,4 +64,27 @@ export class ContactListComponent implements OnInit, OnDestroy {
     // Navigate to the contact details page with the contact's ID
     this.router.navigate(['/phonebook/contact-details', contactId]);
   }
+
+  toggleSelectAll(event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    this.filteredContacts.forEach(contact => contact.selected = isChecked);
+  }
+
+  deleteSelected() {
+    const selectedContacts = this.filteredContacts.filter(contact => contact.selected);
+    if (selectedContacts.length === 0) {
+      alert('No contacts selected');
+      return;
+    }
+
+    if (confirm(`Are you sure you want to delete ${selectedContacts.length} contact(s)?`)) {
+      this.contacts = this.contacts.filter(contact => !contact.selected);
+      this.filteredContacts = this.filteredContacts.filter(contact => !contact.selected);
+      // Here we can call a service to delete the contacts
+    }
+  }
+
+  get hasSelectedContacts(): boolean {
+    return this.filteredContacts.some(contact => contact.selected);
+  }
 }
