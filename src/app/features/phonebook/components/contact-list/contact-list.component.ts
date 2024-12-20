@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
 })
 export class ContactListComponent implements OnInit, OnDestroy {
   contacts: Contact[] = [];
+  filteredContacts: Contact[] = [];
   selectedSortField: keyof Contact = 'first_name'; // Ensure this is typed correctly
   selectedSortDirection: 'asc' | 'desc' = 'asc'; // Default sorting direction
   isGridView: boolean = true; // Default to grid view
+  searchTerm: string = '';
 
   constructor(
     private contactService: ContactsService,
@@ -32,7 +34,26 @@ export class ContactListComponent implements OnInit, OnDestroy {
   getAllContacts() {
     this.contactService.getAllContacts().subscribe((res: Contact[]) => {
       this.contacts = res;
+      this.filteredContacts = res;
     });
+  }
+
+  onSearchChange(): void {
+    this.filterContacts();
+  }
+
+  filterContacts(): void {
+    if (!this.searchTerm.trim()) {
+      this.filteredContacts = this.contacts;
+    } else {
+      const searchTermLower = this.searchTerm.toLowerCase().trim();
+      this.filteredContacts = this.contacts.filter(contact => 
+        contact.first_name.toLowerCase().includes(searchTermLower) ||
+        contact.last_name.toLowerCase().includes(searchTermLower) ||
+        contact.phone_number.includes(searchTermLower) ||
+        contact.email.includes(searchTermLower)
+      );
+    }
   }
 
   toggleView() {
