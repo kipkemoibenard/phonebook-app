@@ -17,6 +17,9 @@ export class ContactListComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
   showPopup: boolean = false;
   doNotAskAgain: boolean = false;
+  contactsByGroup: { [key: string]: Contact[] } = {};
+  groups: string[] = [];
+  selectedGroup: string = 'All';
 
   constructor(
     private contactService: ContactsService,
@@ -38,6 +41,8 @@ export class ContactListComponent implements OnInit, OnDestroy {
     this.contactService.getAllContacts().subscribe((res: Contact[]) => {
       this.contacts = res;
       this.filteredContacts = res;
+      this.groups = ['All', ...new Set(res.map(contact => contact.group).filter(Boolean))];
+      this.groupContacts();
     });
   }
 
@@ -57,6 +62,26 @@ export class ContactListComponent implements OnInit, OnDestroy {
         contact.email.includes(searchTermLower)
       );
     }
+  }
+
+  groupContacts(): void {
+    this.contactsByGroup = this.filteredContacts.reduce((groups, contact) => {
+      const groupKey = contact.group || 'Ungrouped';
+      if (!groups[groupKey]) {
+        groups[groupKey] = [];
+      }
+      groups[groupKey].push(contact);
+      return groups;
+    }, {} as { [key: string]: Contact[] });
+  }
+
+  onGroupChange(): void {
+    if (this.selectedGroup === 'All') {
+      this.filteredContacts = this.contacts;
+    } else {
+      this.filteredContacts = this.contacts.filter(contact => contact.group === this.selectedGroup);
+    }
+    this.groupContacts();
   }
 
   toggleView() {

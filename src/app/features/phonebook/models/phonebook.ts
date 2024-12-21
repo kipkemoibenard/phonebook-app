@@ -8,4 +8,6 @@ export interface Contact {
     contact_image: string;
     physical_address: string;
     is_deleted: boolean;
+    group: string;
+    is_favorite: boolean;
   }

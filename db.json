@@ -8,7 +8,8 @@
       "physical_address": "123 Kimathi st, Nairobi, Kenya",
       "id": "1",
       "is_deleted": false,
-      "contact_image": "https://pics.craiyon.com/2023-06-14/82614c9c770f4641af42a3617d1fb4b3.webp"
+      "contact_image": "https://pics.craiyon.com/2023-06-14/82614c9c770f4641af42a3617d1fb4b3.webp",
+      "group": "Family"
     },
     {
       "first_name": "Kariuki",
@@ -17,7 +18,9 @@
       "phone_number": "+254456789009",
       "physical_address": "456 Wainaina St, Nairobi, Kenya",
       "id": "2",
-      "is_deleted": false
+      "is_deleted": false,
+      "group": "Work",
+      "is_favorite": false
     },
     {
       "first_name": "Ilkay",
@@ -26,7 +29,9 @@
       "phone_number": "+25445678907",
       "physical_address": "786 Juja st, Juja, Kenya",
       "id": "3",
-      "is_deleted": false
+      "is_deleted": false,
+      "group": "Friends",
+      "is_favorite": false
     },
     {
       "first_name": "Jane",
@@ -35,7 +40,9 @@
       "phone_number": "+254456789079",
       "physical_address": "45 Wabera st, Isiolo, Kenya",
       "id": "4",
-      "is_deleted": false
+      "is_deleted": false,
+      "group": "Friends",
+      "is_favorite": true
     }
   ]
 }

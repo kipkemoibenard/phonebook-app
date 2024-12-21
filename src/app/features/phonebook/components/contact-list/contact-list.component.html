@@ -48,6 +48,15 @@
                     </option>
                 </select>
             </div>
+
+            <!-- Group By Dropdown -->
+            <div class="w-full sm:w-auto sm:max-w-[300px]">
+                <label for="groupBy" class="block text-gray-700 font-medium mb-2 text-sm">Group By:</label>
+                <select id="groupBy" class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded w-full text-sm"
+                        [(ngModel)]="selectedGroup" (change)="onGroupChange()">
+                  <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+                </select>
+              </div>              
         </div>
 
         <!-- Search Bar -->
