@@ -15,6 +15,8 @@ export class ContactListComponent implements OnInit, OnDestroy {
   selectedSortDirection: 'asc' | 'desc' = 'asc'; // Default sorting direction
   isGridView: boolean = true; // Default to grid view
   searchTerm: string = '';
+  showPopup: boolean = false;
+  doNotAskAgain: boolean = false;
 
   constructor(
     private contactService: ContactsService,
@@ -23,6 +25,7 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getAllContacts();
+    this.getDefaultView();
   }
 
   ngOnDestroy(): void {}
@@ -57,7 +60,37 @@ export class ContactListComponent implements OnInit, OnDestroy {
   }
 
   toggleView() {
-    this.isGridView = !this.isGridView; // Toggle between grid and list views
+    if (this.doNotAskAgain) {
+      this.isGridView = !this.isGridView;
+      localStorage.setItem('defaultView', this.isGridView ? 'grid' : 'list');
+    } else {
+      this.showPopup = true;
+    }
+  }
+
+  setDefaultView(view: 'grid' | 'list') {
+    this.isGridView = view === 'grid';
+    localStorage.setItem('defaultView', view);
+
+    if (this.doNotAskAgain) {
+      localStorage.setItem('doNotAskAgain', 'true');
+    }
+
+    this.showPopup = false;
+  }
+
+
+  getDefaultView() {
+    const savedView = localStorage.getItem('defaultView');
+    const doNotAskAgain = localStorage.getItem('doNotAskAgain');
+
+    if (savedView) {
+      this.isGridView = savedView === 'grid';
+    }
+
+    if (doNotAskAgain) {
+      this.doNotAskAgain = doNotAskAgain === 'true';
+    }
   }
 
   onContactClick(contactId: number): void {
