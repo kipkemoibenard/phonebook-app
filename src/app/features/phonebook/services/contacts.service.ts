@@ -31,4 +31,11 @@ baseUrl = 'http://localhost:3000'
     const contactId = contactDetails.id;
     return this.http.put(`${this.baseUrl}/contacts/${contactId}`, contactDetails);
   }
+
+  // Use PATCH to update a single field
+  updateFavorite(contactId: number, isFavorite: boolean): Observable<Contact> {
+    const url = `${this.baseUrl}/contacts/${contactId}`;
+    const updateData = { is_favorite: isFavorite };
+    return this.http.patch<Contact>(url, updateData);
+  }
 }

@@ -1,0 +1,28 @@
+<div class="container mx-auto p-4 overflow-x-auto">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Favorite Contacts</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6  overflow-x-auto  min-w-[200px]  ">
+    <div *ngFor="let contact of favoriteContacts" 
+         class="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out relative min-w-[200px] min-h-[200px] flex-shrink-0 flex justify-center">
+      
+      <!-- Star Icon (Favorite Toggle) - positioned at top right -->
+      <div class="absolute top-2 right-2">
+        <svg *ngIf="contact.is_favorite" xmlns="http://www.w3.org/2000/svg" fill="gold" viewBox="0 0 24 24" width="24" height="24" class="cursor-pointer" (click)="$event.stopPropagation(); toggleFavorite(contact)">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+        </svg>
+        <svg *ngIf="!contact.is_favorite" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="gray" viewBox="0 0 24 24" width="24" height="24" class="cursor-pointer" (click)="$event.stopPropagation(); toggleFavorite(contact)">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927C11.306 2.334 11.946 2 12.5 2s1.194.334 1.451.927l1.387 2.596 2.866.416c.91.132 1.269 1.275.611 1.933l-2.073 2.021.491 2.866c.155.904-.795 1.596-1.567 1.166l-2.579-1.356-2.578 1.356c-.772.43-1.722-.262-1.567-1.166l.49-2.866-2.072-2.021c-.658-.658-.299-1.801.611-1.933l2.867-.416 1.387-2.596z"/>
+        </svg>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="flex flex-col items-center overflow-x-auto">
+        <img src="https://via.placeholder.com/150" alt="Avatar" class="rounded-full w-24 h-24 sm:w-32 sm:h-32 object-cover mb-2 sm:mb-4">
+        <h3 class="text-lg font-semibold text-gray-800 whitespace-nowrap">{{ contact.first_name }} {{ contact.last_name }}</h3>
+        <p class="text-sm text-gray-600  whitespace-nowrap">{{ contact.group }}</p>
+        <p class="text-sm text-gray-600 mt-1 whitespace-nowrap">{{ contact.phone_number }}</p>
+        <p class="text-sm text-gray-600 mt-1 whitespace-nowrap">{{ contact.email }}</p>
+        <p class="text-sm text-gray-600 mt-1  whitespace-nowrap">{{ contact.physical_address }}</p>
+      </div>
+    </div>
+  </div>
+</div>

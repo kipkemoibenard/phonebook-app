@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ContactsService } from '../../services/contacts.service';
 import { Contact } from '../../models/phonebook';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/services/notifications.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -23,7 +24,8 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   constructor(
     private contactService: ContactsService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -144,5 +146,16 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   get hasSelectedContacts(): boolean {
     return this.filteredContacts.some(contact => contact.selected);
+  }
+
+  toggleFavorite(contact: Contact): void {
+    const updatedFavoriteStatus = !contact.is_favorite;
+    this.contactService.updateFavorite(contact.id, updatedFavoriteStatus).subscribe((res) => {
+        contact.is_favorite = updatedFavoriteStatus;
+      },
+      (error) => {
+        this.notificationService.error('Error updating favorite status');
+      }
+    );
   }
 }

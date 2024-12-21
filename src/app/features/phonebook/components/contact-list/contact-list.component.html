@@ -97,6 +97,18 @@
         [ngClass]="{ 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4': isGridView, 'flex flex-col space-y-4': !isGridView }">
         <div *ngFor="let contact of filteredContacts | sort: selectedSortDirection: selectedSortField"
             class="border rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col items-center bg-white w-full relative" (click)="onContactClick(contact.id)">
+            <!-- Favorite Star Icon -->
+            <div class="absolute top-2 right-2">
+                <svg *ngIf="contact.is_favorite" xmlns="http://www.w3.org/2000/svg" fill="gold" viewBox="0 0 24 24" width="24"
+                    height="24" class="cursor-pointer" (click)="$event.stopPropagation(); toggleFavorite(contact)">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg *ngIf="!contact.is_favorite" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="gray" viewBox="0 0 24 24"
+                    width="24" height="24" class="cursor-pointer" (click)="$event.stopPropagation(); toggleFavorite(contact)">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11.049 2.927C11.306 2.334 11.946 2 12.5 2s1.194.334 1.451.927l1.387 2.596 2.866.416c.91.132 1.269 1.275.611 1.933l-2.073 2.021.491 2.866c.155.904-.795 1.596-1.567 1.166l-2.579-1.356-2.578 1.356c-.772.43-1.722-.262-1.567-1.166l.49-2.866-2.072-2.021c-.658-.658-.299-1.801.611-1.933l2.867-.416 1.387-2.596z" />
+                </svg>
+            </div>
             <!-- Checkbox -->
             <div class="absolute top-2 left-2">
                 <input type="checkbox" [(ngModel)]="contact.selected" (click)="$event.stopPropagation()" class="form-checkbox h-4 w-4 text-blue-600">

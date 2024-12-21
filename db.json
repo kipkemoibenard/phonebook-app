@@ -9,7 +9,8 @@
       "id": "1",
       "is_deleted": false,
       "contact_image": "https://pics.craiyon.com/2023-06-14/82614c9c770f4641af42a3617d1fb4b3.webp",
-      "group": "Family"
+      "group": "Family",
+      "is_favorite": false
     },
     {
       "first_name": "Kariuki",
@@ -20,7 +21,7 @@
       "id": "2",
       "is_deleted": false,
       "group": "Work",
-      "is_favorite": false
+      "is_favorite": true
     },
     {
       "first_name": "Ilkay",
@@ -31,7 +32,7 @@
       "id": "3",
       "is_deleted": false,
       "group": "Friends",
-      "is_favorite": false
+      "is_favorite": true
     },
     {
       "first_name": "Jane",
@@ -42,7 +43,29 @@
       "id": "4",
       "is_deleted": false,
       "group": "Friends",
+      "is_favorite": false
+    },
+    {
+      "first_name": "Israel",
+      "last_name": "Mbonyi",
+      "email": "israel.mbonyi@gospel.com",
+      "phone_number": "+25445678966887",
+      "physical_address": "45 Mugabe st, Kigali, Rwanda",
+      "id": "5",
+      "is_deleted": false,
+      "group": "Friends",
       "is_favorite": true
+    },
+    {
+      "first_name": "Mwaipaja",
+      "last_name": "Martha",
+      "email": "israel.mbonyi@gospel.com",
+      "phone_number": "+25445678966887",
+      "physical_address": "45 Kagame st, Mwanza, Tanzania",
+      "id": "6",
+      "is_deleted": false,
+      "group": "Friends",
+      "is_favorite": false
     }
   ]
 }
