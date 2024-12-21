@@ -1,48 +1,48 @@
-<div class="container mx-auto p-4 min-w-[220px]">
+<div class="container mx-auto p-4 min-w-[220px] dark:bg-gray-800 dark:text-white">
     <!-- Controls Section -->
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between space-y-4 sm:space-y-0 mb-4">
         <div class="flex flex-col sm:flex-row sm:items-end space-y-4 sm:space-y-0 sm:space-x-4">
             <!-- Toggle View Button -->
             <div class="relative w-full sm:w-auto">
                 <button (click)="toggleView()"
-                    class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto text-sm">
+                    class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 w-full sm:w-auto text-sm dark:bg-gray-600 dark:hover:bg-gray-700">
                     Switch to {{ isGridView ? 'List' : 'Grid' }} View
                 </button>
               
                 <!-- Choose default view Popup Modal -->
                 <div *ngIf="showPopup"
-                    class="absolute z-50 bg-white p-4 rounded shadow-lg w-full sm:w-80 mt-2 border border-gray-300 max-w-full sm:max-w-none left-0 right-0 sm:left-0 sm:translate-x-0">
-                    <h2 class="text-lg font-semibold mb-4">Set Default View</h2>
-                    <p class="text-sm mb-4">Choose your default view preference:</p>
+                    class="absolute z-50 bg-white dark:bg-gray-700 p-4 rounded shadow-lg w-full sm:w-80 mt-2 border border-gray-300 dark:border-gray-600 max-w-full sm:max-w-none left-0 right-0 sm:left-0 sm:translate-x-0">
+                    <h2 class="text-lg font-semibold mb-4 dark:text-white">Set Default View</h2>
+                    <p class="text-sm mb-4 dark:text-gray-300">Choose your default view preference:</p>
                     <div class="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4">
                         <button (click)="setDefaultView('grid')"
-                            class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto">
+                            class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700">
                             Grid View
                         </button>
                         <button (click)="setDefaultView('list')"
-                            class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto">
+                            class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700">
                             List View
                         </button>
                     </div>
                     <div class="mt-4">
-                        <label class="flex items-center text-sm">
+                        <label class="flex items-center text-sm dark:text-gray-300">
                             <input type="checkbox" [(ngModel)]="doNotAskAgain" class="mr-2">
                             Do not ask again
                         </label>
                     </div>
                     <div class="mt-4 text-right">
-                        <button (click)="showPopup = false" class="text-sm text-gray-500 hover:text-gray-700">
+                        <button (click)="showPopup = false" class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
                             Cancel
                         </button>
                     </div>
                 </div>
-              </div>              
+            </div>              
 
             <!-- Sorting Dropdown -->
             <div class="w-full sm:w-auto sm:max-w-[300px]">
-                <label for="sort-field" class="block text-gray-700 font-medium mb-2 text-sm">Sort By:</label>
+                <label for="sort-field" class="block text-gray-700 dark:text-gray-300 font-medium mb-2 text-sm">Sort By:</label>
                 <select id="sort-field" [(ngModel)]="selectedSortField"
-                    class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded w-full text-sm">
+                    class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 py-2 px-3 rounded w-full text-sm">
                     <option *ngFor="let field of ['first_name', 'last_name', 'phone_number']" [value]="field">
                         {{ field | titlecase }}
                     </option>
@@ -51,8 +51,8 @@
 
             <!-- Group By Dropdown -->
             <div class="w-full sm:w-auto sm:max-w-[300px]">
-                <label for="groupBy" class="block text-gray-700 font-medium mb-2 text-sm">Group By:</label>
-                <select id="groupBy" class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded w-full text-sm"
+                <label for="groupBy" class="block text-gray-700 dark:text-gray-300 font-medium mb-2 text-sm">Group By:</label>
+                <select id="groupBy" class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 py-2 px-3 rounded w-full text-sm"
                         [(ngModel)]="selectedGroup" (change)="onGroupChange()">
                   <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
                 </select>
@@ -61,18 +61,18 @@
 
         <!-- Search Bar -->
         <div class="w-full sm:w-auto sm:max-w-[300px] relative">
-            <label for="search-input" class="block text-gray-700 font-medium mb-2 text-sm">Search Contacts:</label>
+            <label for="search-input" class="block text-gray-700 dark:text-gray-300 font-medium mb-2 text-sm">Search Contacts:</label>
             <input
                 id="search-input"
                 type="text"
                 [(ngModel)]="searchTerm"
                 (ngModelChange)="onSearchChange()"
                 placeholder="Search by name, email or phone number"
-                class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 rounded w-full text-sm pl-10"
+                class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 py-2 px-3 rounded w-full text-sm pl-10"
             />
             <!-- Search Icon -->
             <div class="absolute left-3 bottom-2.5">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -84,10 +84,10 @@
     <div class="flex justify-between items-center mb-4">
         <div class="flex items-center">
             <input type="checkbox" id="select-all" (change)="toggleSelectAll($event)" class="mr-2">
-            <label for="select-all" class="text-sm text-gray-700">Select All</label>
+            <label for="select-all" class="text-sm text-gray-700 dark:text-gray-300">Select All</label>
         </div>
         <button (click)="deleteSelected()" [disabled]="!hasSelectedContacts"
-            class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 disabled:bg-red-300 disabled:cursor-not-allowed text-sm">
+            class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 disabled:bg-red-300 disabled:cursor-not-allowed text-sm dark:bg-red-600 dark:hover:bg-red-700 dark:disabled:bg-red-400">
             Delete Selected
         </button>
     </div>
@@ -96,7 +96,7 @@
     <div
         [ngClass]="{ 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4': isGridView, 'flex flex-col space-y-4': !isGridView }">
         <div *ngFor="let contact of filteredContacts | sort: selectedSortDirection: selectedSortField"
-            class="border rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col items-center bg-white w-full relative" (click)="onContactClick(contact.id)">
+            class="border rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col items-center bg-white dark:bg-gray-700 w-full relative" (click)="onContactClick(contact.id)">
             <!-- Favorite Star Icon -->
             <div class="absolute top-2 right-2">
                 <svg *ngIf="contact.is_favorite" xmlns="http://www.w3.org/2000/svg" fill="gold" viewBox="0 0 24 24" width="24"
@@ -104,24 +104,24 @@
                     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                 </svg>
                 <svg *ngIf="!contact.is_favorite" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="gray" viewBox="0 0 24 24"
-                    width="24" height="24" class="cursor-pointer" (click)="$event.stopPropagation(); toggleFavorite(contact)">
+                    width="24" height="24" class="cursor-pointer dark:stroke-gray-400" (click)="$event.stopPropagation(); toggleFavorite(contact)">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M11.049 2.927C11.306 2.334 11.946 2 12.5 2s1.194.334 1.451.927l1.387 2.596 2.866.416c.91.132 1.269 1.275.611 1.933l-2.073 2.021.491 2.866c.155.904-.795 1.596-1.567 1.166l-2.579-1.356-2.578 1.356c-.772.43-1.722-.262-1.567-1.166l.49-2.866-2.072-2.021c-.658-.658-.299-1.801.611-1.933l2.867-.416 1.387-2.596z" />
                 </svg>
             </div>
             <!-- Checkbox -->
             <div class="absolute top-2 left-2">
-                <input type="checkbox" [(ngModel)]="contact.selected" (click)="$event.stopPropagation()" class="form-checkbox h-4 w-4 text-blue-600">
+                <input type="checkbox" [(ngModel)]="contact.selected" (click)="$event.stopPropagation()" class="form-checkbox h-4 w-4 text-blue-600 dark:text-blue-400">
             </div>
             <!-- Display Name, email and Phone Number -->
-            <h2 class="text-base sm:text-lg font-medium text-center break-words mt-4">{{ contact.first_name }} {{ contact.last_name }}</h2>
-            <p class="text-xs sm:text-sm text-gray-500 text-center break-words">{{ contact.phone_number }}</p>
-            <p class="text-xs sm:text-sm text-gray-500 text-center break-words">{{ contact.email }}</p>
+            <h2 class="text-base sm:text-lg font-medium text-center break-words mt-4 dark:text-white">{{ contact.first_name }} {{ contact.last_name }}</h2>
+            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center break-words">{{ contact.phone_number }}</p>
+            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center break-words">{{ contact.email }}</p>
         </div>
     </div>
 
     <!-- No Results Message -->
-    <div *ngIf="filteredContacts.length === 0" class="text-center text-gray-500 mt-4">
+    <div *ngIf="filteredContacts.length === 0" class="text-center text-gray-500 dark:text-gray-400 mt-4">
         No contacts found matching your search.
     </div>
 </div>

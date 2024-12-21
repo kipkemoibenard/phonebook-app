@@ -21,7 +21,7 @@
       "id": "2",
       "is_deleted": false,
       "group": "Work",
-      "is_favorite": true
+      "is_favorite": false
     },
     {
       "first_name": "Ilkay",
@@ -30,7 +30,7 @@
       "phone_number": "+25445678907",
       "physical_address": "786 Juja st, Juja, Kenya",
       "id": "3",
-      "is_deleted": false,
+      "is_deleted": true,
       "group": "Friends",
       "is_favorite": true
     },
@@ -54,18 +54,16 @@
       "id": "5",
       "is_deleted": false,
       "group": "Friends",
-      "is_favorite": true
+      "is_favorite": false
     },
     {
       "first_name": "Mwaipaja",
       "last_name": "Martha",
-      "email": "israel.mbonyi@gospel.com",
-      "phone_number": "+25445678966887",
+      "email": "martha.mwaipaja@gospel.com",
+      "phone_number": "+254456789668",
       "physical_address": "45 Kagame st, Mwanza, Tanzania",
       "id": "6",
-      "is_deleted": false,
-      "group": "Friends",
-      "is_favorite": false
+      "is_deleted": false
     }
   ]
 }
